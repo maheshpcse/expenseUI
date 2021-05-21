@@ -1,0 +1,30 @@
+.sidemenu-title {
+    font-size: 0.8em;
+}
+
+.side-links a {
+  text-decoration: none !important;
+  font-size: 0.8em;
+}
+
+.w3-blue {
+  background-color: #5f9ea0 !important;
+}
+
+.side-links a:hover {
+  background-color: honeydew !important;
+}
+
+.search-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-box .fa-search {
+  font-size: larger;
+  padding: 8px;
+  border: 1px solid #5f9ea0;
+  color: white;
+  background-color: #5f9ea0;
+}

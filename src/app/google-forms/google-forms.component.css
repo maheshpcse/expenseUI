@@ -1,0 +1,162 @@
+.card,
+.form-card {
+  --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  border-radius: 0%;
+}
+
+.form-card .card-header {
+  background-color: #b7e7e7;
+}
+
+a {
+  /* color: #b7e7e7; */
+  cursor: pointer;
+}
+
+a:hover {
+  color: #b7e7e7;
+}
+
+.form-card .card-footer .btn-action {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.add-card {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+ 
+
+.btn-sidemenu {
+  display: grid;
+}
+
+.card.add-card .card-holder ul{
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+}
+
+
+.card.add-card .card-holder ul li{
+  padding: 10px;
+  margin-bottom: 15px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.card.add-card .card-holder ul li a{
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.card.add-card .card-holder ul li:last-child{
+  margin-bottom: 0px;
+
+}
+
+/* switch input styles */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  margin-bottom: 0px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  width: 15px;
+  height: 15px;
+  bottom: 3px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked+.slider {
+  background-color: #b7e7e7;
+}
+
+input:focus+.slider {
+  box-shadow: 0 0 1px #b7e7e7;
+}
+
+input:checked+.slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+input:checked + .slider:before {
+  transform: translateX(18px);
+}
+
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+  
+}
+
+.slider.round:before {
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  bottom: 3px;
+  left: 4px;
+}
+
+
+/* dynamic form input styles */
+input[type=text] {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom-right-radius: none;
+  border-bottom-left-radius: none;
+}
+
+select {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom-right-radius: none;
+  border-bottom-left-radius: none;
+}
+
+.btns-add a {
+  text-align: center;
+  font-size: 1.3rem;
+  width: 35px;
+  border: 1px solid;
+}
+
+.btns-add a:hover {
+  background-color: #b7e7e7;
+  color: white;
+}

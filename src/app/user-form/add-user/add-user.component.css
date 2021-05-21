@@ -1,0 +1,24 @@
+h3 {
+  color: teal;
+  font-family: 'Comfortaa';
+  font-weight: 400;
+}
+
+hr.style-one {
+  border: 0;
+  height: 1px;
+  background: #333;
+  background-image: linear-gradient(to right, #ccc, #333, #ccc);
+}
+
+label {
+  font-family: 'VarelaRound';
+  font-weight: 200;
+}
+
+input[type=text] {
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: 1px solid teal;
+}

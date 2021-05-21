@@ -1,0 +1,35 @@
+<!-- Top container -->
+<div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
+    <span class="w3-bar-item w3-left">
+        <img src="../../assets/images/expense-icon.png" alt="_icon" class="img-responsive rounded-image" width="35"
+            height="35">
+        <span class="ml-2">Expense System</span>
+        <span class="ml-5" (click)="showHideSideNav()"><i class="fa fa-bars" aria-hidden="false"></i></span>
+    </span>
+    <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i
+            class="fa fa-bars"></i>  Menu</button>
+    <span class="w3-bar-item w3-right dropdown" style="cursor: pointer;">
+        <i class="fa fa-power-off" data-toggle="dropdown" aria-hidden="true"></i>
+        <div class="dropdown-menu dropdown-card">
+            <a class="dropdown-item text-center profile-card">
+                <img src="../../assets/images/admin-avatar.png" alt="_profile" class="img-responsive rounded-image" width="35" height="35">
+                <div class="profile-details">
+                    <span class="ml-2 user-name">{{ username | titlecase }}</span>
+                    <span class="ml-2 role-name">{{ role }}</span>
+                </div>
+            </a>
+            <a class="dropdown-item text-center user-profile" [ngClass]="{'is-active': href == '/admin/profile'}" [routerLink]="['/admin/profile']">
+                <span><i class="fa fa-user"></i></span>
+                <span class="ml-2">Profile</span>
+            </a>
+            <a class="dropdown-item text-center user-settings" [ngClass]="{'is-active': href == '/admin/settings'}" [routerLink]="['/admin/settings']">
+                <span><i class="fa fa-gear"></i></span>
+                <span class="ml-2">Settings</span>
+            </a>
+            <a class="dropdown-item text-center user-logout" (click)="signOut()">
+                <span><i class="fa fa-sign-out"></i></span>
+                <span class="ml-2">Logout</span>
+            </a>
+        </div>
+    </span>
+</div>

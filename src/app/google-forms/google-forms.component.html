@@ -1,0 +1,195 @@
+<div class="container" *ngIf="true">
+    <div class="row mt-5" *ngFor="let item of inputCards; let i=index">
+        <div class="col-md-9">
+            <div class="card form-card" id="multiple-card-forms">
+                <div class="card-header">
+                    <div class="card-title">
+                        Section - I
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="container">
+                        <form [formGroup]="inputForm">
+                            <div formArrayName="forms">
+                                <div class="row"
+                                    *ngFor="let items of inputForm.controls['forms'].controls; let j=index"
+                                    [formGroupName]="j">
+                                    <div class="col-md-9" *ngFor="let input of inputsArr; let k=index">
+                                        <form [formGroup]="inputFormArr">
+                                            <div formArrayName="inputs">
+                                                <div class="row" *ngFor="let item of inputFormArr.controls['inputs'].controls; let l=index" [formGroupName]="l">
+                                                    <div class="col-md-9">
+                                                        <div class="form-group" *ngIf="input.type === 'text'">
+                                                            <input [type]="input.type" class="form-control"
+                                                                name="fields" id="fieldsId" formControlName="inputTextName"
+                                                                placeholder="Type here...">
+                                                        </div>
+                                                        <div class="form-group" *ngIf="input.type === 'number'">
+                                                            <input [type]="input.type" class="form-control"
+                                                                name="fields" id="fieldsId" formControlName="inputNumberName"
+                                                                placeholder="Enter any number...">
+                                                        </div>
+                                                        <div class="form-group" *ngIf="input.type === 'file'">
+                                                            <input [type]="input.type" class="form-control"
+                                                                name="fields" id="fieldsId" formControlName="inputFileName">
+                                                        </div>
+                                                        <div class="form-group" *ngIf="input.type === 'radio'">
+                                                            <div class="form-check-inline">
+                                                                <label class="form-check-label" for="radio1">
+                                                                    <input [type]="input.type" class="form-check-input"
+                                                                        id="radio1" name="optradio" value="option1"
+                                                                        formControlName="inputRadioName" checked>Option 1
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-check-inline">
+                                                                <label class="form-check-label" for="radio2">
+                                                                    <input [type]="input.type" class="form-check-input"
+                                                                        id="radio2" name="optradio" value="option2"
+                                                                        formControlName="inputRadioName">Option 2
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group" *ngIf="input.type === 'checkbox'">
+                                                            <div class="form-check-inline">
+                                                                <label class="form-check-label">
+                                                                    <input [type]="input.type" class="form-check-input"
+                                                                        id="checkbox1" name="optcheckbox"
+                                                                        value="option1"
+                                                                        formControlName="inputCheckboxName">Option 1
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-check-inline">
+                                                                <label class="form-check-label">
+                                                                    <input [type]="input.type" class="form-check-input"
+                                                                        id="checkbox2" name="optcheckbox"
+                                                                        value="option2"
+                                                                        formControlName="inputCheckboxName">Option 2
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group" *ngIf="input.type === 'dropdown'">
+                                                            <select class="form-control" name="fields" id="fieldsId"
+                                                                formControlName="inputDropdownName">
+                                                                <option value="" selected disabled>Select Item :
+                                                                </option>
+                                                                <option>1</option>
+                                                                <option>2</option>
+                                                                <option>3</option>
+                                                                <option>4</option>
+                                                                <option>5</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group input-group btns-add">
+                                                            <a (click)="addInput(l, input)">
+                                                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                                            </a>
+                                                            <a class="ml-2" (click)="removeInput(l, input)" *ngIf="l>=1">
+                                                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <select class="form-control" name="typess" id="typessId"
+                                                formControlName="inputType" (change)="onSelectInput(i, j, items)">
+                                                <option value="null" selected disabled>Select Input Type :
+                                                </option>
+                                                <option [value]="types.name"
+                                                    *ngFor="let types of inputFields; let m=index">
+                                                    {{ types.name | titlecase }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="btn-action">
+                        <a><i class="fa fa-clone ml-5" aria-hidden="true"></i></a>
+                        <a (click)="removeCard(i, item)" *ngIf="i>=1"><i class="fa fa-trash-o ml-5"
+                                aria-hidden="true"></i></a>
+                        <label class="switch ml-5">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                        <a>
+                            <i class="fa fa-ellipsis-v ml-5" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1" *ngIf="i==0">
+            <div class="card add-card">
+                <div class="card-holder">
+                    <ul>
+                        <li>
+                            <a (click)="addCard(i, item)">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <i class="fa fa-bell-o" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <i class="fa fa-save" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" *ngIf="false">
+    <div class="row mt-5">
+        <div class="col-md-6">
+            <form action="">
+                <div class="form-group">
+                    <label for="phoneNum">Phone Number</label>
+                    <input type="number" class="form-control" name="phone" [(ngModel)]="phoneNum" pattern="^((\\+91-?)|0)?[0-9]{10}$" #phone="ngModel">
+                    <span *ngIf="phone.invalid && (phone.dirty || phone.touched)" style="color: maroon;">
+                        <span *ngIf="phone.errors.pattern">Phone number is invalid</span>
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="container" *ngIf="false">
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <tr *ngFor="let key of headers; let i=index">
+                        <th scope="col">{{key}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let value of employeesList; let j=index">
+                        <td>{{value}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

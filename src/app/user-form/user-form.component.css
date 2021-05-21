@@ -1,0 +1,160 @@
+/* view table styles */
+/* .table-card {
+    position: sticky;
+    height: 100%;
+} */
+
+.table-title {
+  font-size: 0.9em;
+}
+
+.search-result {
+  background-color: #dee2e6;
+  padding: 5px;
+  font-size: 0.8em;
+}
+
+.search-clear {
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 0.9em;
+  color: #5f9ea0;
+}
+
+.view-table-page {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* .table-thead {
+    position: sticky;
+}
+
+.table-tbody {
+    position: sticky;
+    overflow: scroll;
+}
+
+/* .table-profile {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+} */
+
+/* .profile-details {
+    display: flex;
+} */
+
+/* .table-tfoot {
+    position: sticky;
+} */
+
+.input-search {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.input-search span .fa-search {
+  font-size: 0.8em;
+  padding: 10px;
+  color: white;
+  background-color: #5f9ea0;
+}
+
+.input-search span .fa-check {
+  cursor: pointer;
+  font-size: 0.8em;
+  padding: 10px;
+  color: white;
+  background-color: #5f9ea0;
+}
+/* end view table styles */
+
+/* add form styles */
+.add-form-page {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-title {
+  color: rgb(161, 159, 159);
+  font-size: 0.9em;
+}
+
+label {
+  font-size: 0.8em;
+  font-weight: 400;
+}
+
+.field-required:after {
+  content: "*";
+  color: orangered;
+}
+
+input[type="text"] {
+  font-size: 0.8em;
+}
+
+.submit-card-footer {
+  background: none !important;
+}
+
+.btn {
+  border-radius: 20px;
+}
+
+.btn-generate {
+  color: white;
+  background-color: #5f9ea0;
+  border-radius: 0% !important;
+  font-size: 0.8em;
+}
+
+.btn-add-back {
+  color: white;
+  background-color: #5f9ea0;
+  border-radius: 20px;
+  font-size: 0.8em;
+}
+
+.btn-add-back:hover {
+  background-color: #4f9294;
+}
+
+.btn-action {
+  color: white;
+  background-color: #5f9ea0;
+  border-radius: 20px;
+  font-size: 0.8em;
+}
+
+.btn-action:hover {
+  background-color: #4f9294;
+}
+
+.btn-cancel {
+  color: rgb(161, 159, 159);
+  border: none;
+}
+/* end add form styles */
+
+.dropdown-card {
+  padding: 0;
+  left: -100px !important;
+}
+
+.dropdown-card a {
+  cursor: pointer;
+  font-size: 0.8em;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  /* padding: 7px; */
+}
+
+.dropdown-card a:hover {
+  background: honeydew !important;
+}

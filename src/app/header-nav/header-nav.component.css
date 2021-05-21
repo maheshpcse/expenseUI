@@ -1,0 +1,55 @@
+.w3-black {
+    background-color: #5F9EA0 !important;
+}
+
+.fa-bars {
+    cursor: pointer;
+}
+
+.dropdown-card {
+    padding: 0;
+}
+
+.dropdown-card a {
+    cursor: pointer;
+    padding: 7px;
+    font-size: 0.8em;
+}
+
+.dropdown-card a:hover {
+    background: honeydew !important;
+}
+
+.profile-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-details {
+    display: grid;
+}
+
+.profile-details .user-name {
+    font-size: 1.2em;
+}
+
+.profile-details .role-name {
+    color: #5F9EA0;
+}
+
+.user-profile {
+    border-top: 1px solid #ccc;
+}
+
+.user-settings {
+    border-top: 1px solid #ccc;
+}
+
+.user-logout {
+    border-top: 1px solid #ccc;
+}
+
+.is-active {
+    background: honeydew;
+}

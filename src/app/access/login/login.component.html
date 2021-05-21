@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="row main-page">
+        <div class="col-md-4 offset-4">
+            <div>
+                <span class="app-title">Expense System</span>
+                <p class="app-info">Please Login to continue</p>
+            </div>
+            <form #loginForm="ngForm">
+                <div class="form-group">
+                    <label for="username" class="field-required">Username</label>
+                    <div class="input-group user-input">
+                        <input type="text" class="form-control" name="userName" id="userId" placeholder="Enter username" [(ngModel)]="username" minlength="0" maxlength="20" #userName="ngModel" (keypress)="onKeyPress()" (input)="onKeyInput()" autocomplete="off" required>
+                        <span><i class="fa fa-user" aria-hidden="false"></i></span>
+                    </div>
+                    <span class="err-msg" *ngIf="userName.invalid && (userName.dirty || userName.touched)">
+                        <span *ngIf="userName.errors?.required">Username is required.</span>
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="field-required">Password</label>
+                    <div class="input-group password-input">
+                        <input type="password" class="form-control" name="pwdName" id="pwdId" placeholder="Enter password" [(ngModel)]="password" minlength="0" maxlength="20" #pwdName="ngModel" (keypress)="onKeyPress()" (input)="onKeyInput()" autocomplete="off" required>
+                        <span><i class="fa fa-lock" aria-hidden="false"></i></span>
+                    </div>
+                    <span class="err-msg" *ngIf="pwdName.invalid && (pwdName.dirty || pwdName.touched)">
+                        <span *ngIf="pwdName.errors?.required">Password is required.</span>
+                    </span>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-login col-md-12" (click)="userLogin()">Login</button>
+                </div>
+            </form>
+            <div class="card alert-info text-center" *ngIf="errorMessage">
+                <span><i class="fa fa-check-circle" aria-hidden="false"></i></span>
+                <span class="ml-2">{{errorMessage}}</span>
+                <span class="ml-2"><i class="fa fa-close"></i></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <hr>
+            <footer>
+                <p class="cp-text text-center">
+                    © Copyright 2021 Expense System. Powered by www.expenseapp.com. All rights reserved.
+                </p>
+            </footer>
+        </div>
+    </div>
+</div>

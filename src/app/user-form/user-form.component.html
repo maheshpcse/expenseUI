@@ -1,0 +1,235 @@
+<app-header-nav></app-header-nav>
+
+<app-side-nav></app-side-nav>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main">
+
+    <div class="container" *ngIf="viewType === 'table'">
+        <br>
+        <div class="row">
+            <div class="col-md-12 view-table-page">
+                <div>
+                    <span class="table-title">Users</span>
+                    <span class="ml-3"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                    <span class="ml-3">
+                        <button class="btn btn-add-back" (click)="viewType = 'add'">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                            <span class="ml-2">Add New</span>
+                        </button>
+                    </span>
+                </div>
+                <div>
+                    <div class="form-group">
+                        <div class="input-group input-search">
+                            <input type="text" class="form-control" name="searchName" id="searchId"
+                                [(ngModel)]="filterQuery" placeholder="Search">
+                            <span *ngIf="!filterQuery"><i class="fa fa-search" aria-hidden="false"></i></span>
+                            <span *ngIf="filterQuery" (click)="search()"><i class="fa fa-check"
+                                    aria-hidden="false"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="search-result text-center" *ngIf="searchEnable">
+                    {{ usersList.length }} result(s) found.
+                    <span class="ml-2"><a class="search-clear" (click)="resetFilters()">Clear all</a></span>
+                </div>
+                <div class="card table-card">
+                    <div class="card-body p-0" *ngIf="!spinner">
+                        <table class="table table-border table-hover table-scroll" [mfData]="usersList"
+                            #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [mfSortBy]="sortBy" [mfSortOrder]="sortOrder">
+                            <thead class="table-thead">
+                                <tr>
+                                    <th>
+                                        <mfDefaultSorter by="fullname">Fullname</mfDefaultSorter>
+                                    </th>
+                                    <th>
+                                        <mfDefaultSorter by="username">Username</mfDefaultSorter>
+                                    </th>
+                                    <th>
+                                        <mfDefaultSorter by="email">Email</mfDefaultSorter>
+                                    </th>
+                                    <th>
+                                        <mfDefaultSorter by="mobile">Phonenumber</mfDefaultSorter>
+                                    </th>
+                                    <th>
+                                        <mfDefaultSorter by="created_at">Joined Date</mfDefaultSorter>
+                                    </th>
+                                    <th>
+                                        <mfDefaultSorter by="status">Status</mfDefaultSorter>
+                                    </th>
+                                    <th class="text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-tbody">
+                                <tr *ngFor="let item of mf.data | paginate: { itemsPerPage: rowsOnPage,
+                                currentPage: page,
+                                totalItems: count }; let i=index">
+                                    <!-- <td class="table-profile">
+                                        <div><img src="../../assets/images/user-avatar.png" alt="_profile" class="img-responsive rounded-image" width="35" height="35"></div>
+                                        <div class="profile-details ml-3">
+                                            <p>{{item.fullname | titlecase}}</p>
+                                            <p>{{item.username | uppercase}}</p>
+                                        </div>
+                                    </td> -->
+                                    <td>{{item.fullname}}</td>
+                                    <td>{{item.username}}</td>
+                                    <td>{{item.email}}</td>
+                                    <td>{{item.mobile}}</td>
+                                    <td>{{item.created_at | date}}</td>
+                                    <td>{{item.status === 1 ? 'Active' : 'Inactive'}}</td>
+                                    <td class="text-center" style="cursor: pointer;">
+                                        <span class="dropdown">
+                                            <i class="fa fa-ellipsis-v" data-toggle="dropdown" aria-hidden="true"></i>
+                                            <div class="dropdown-menu dropdown-card">
+                                                <a class="dropdown-item text-center">
+                                                    <span><i class="fa fa-eye"></i></span>
+                                                    <span class="ml-2">View details</span>
+                                                </a>
+                                                <a class="dropdown-item text-center" *ngIf="item.status === 1" (click)="onSelectEditUser(item)">
+                                                    <span><i class="fa fa-edit"></i></span>
+                                                    <span class="ml-2">Edit</span>
+                                                </a>
+                                                <a class="dropdown-item text-center" *ngIf="item.status === 1">
+                                                    <span><i class="fa fa-ban"></i></span>
+                                                    <span class="ml-2">Deactive</span>
+                                                </a>
+                                                <a class="dropdown-item text-center" *ngIf="item.status === 0">
+                                                    <span><i class="fa fa-reply"></i></span>
+                                                    <span class="ml-2">Restore</span>
+                                                </a>
+                                            </div>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot class="table-tfoot">
+                                <tr>
+                                    <td colspan="7">
+                                        <div class="dynamic-pagination">
+                                            <div class="pagination-text">
+                                                Showing {{pager.startCount}} - {{pager.endCount}} out of {{count}}
+                                                Result(s)
+                                            </div>
+                                            <div class="pagination-box">
+                                                <!-- <mfBootstrapPaginator [rowsOnPageSet]="rowsOnPageSet">
+                                                </mfBootstrapPaginator> -->
+                                                <pagination-controls (pageChange)="pageChanged($event)"
+                                                    (pageBoundsCorrection)="pageChanged($event)" maxSize="7"
+                                                    directionLinks="true" autoHide="false" responsive="true"
+                                                    previousLabel="Previous" nextLabel="Next"
+                                                    screenReaderPaginationLabel="Pagination"
+                                                    screenReaderPageLabel="page"
+                                                    screenReaderCurrentLabel="You're on page">
+                                                </pagination-controls>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="card-body p-0" *ngIf="spinner">
+                        <div class="table-shimmer" *ngFor="let item of rows; let i=index">
+                            <div class="line shimmer"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" *ngIf="viewType === 'add' || viewType === 'update'">
+        <br>
+        <div class="row">
+            <div class="col-md-12 add-form-page">
+                <div>
+                    <span class="table-title">Users</span>
+                    <span class="ml-3"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                    <span class="ml-3 form-title">Add User</span>
+                </div>
+                <div>
+                    <span class="ml-3">
+                        <button class="btn btn-add-back" (click)="resetForm()">
+                            <i class="fa fa-angle-left" aria-hidden="true"></i>
+                            <span class="ml-2">Back</span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card add-card">
+                    <div class="card-body p-3">
+                        <form #usersForm="ngForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="fullname" class="field-required">Fullname</label>
+                                        <input type="text" class="form-control" name="fullName" id="fullNameId"
+                                            [(ngModel)]="fullname" placeholder="Type here..." required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="email" class="field-required">Email</label>
+                                        <input type="text" class="form-control" name="emailName" id="emailId"
+                                            [(ngModel)]="email" placeholder="Type here..." required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="username" class="field-required">Username</label>
+                                        <input type="text" class="form-control" name="userName" id="userId"
+                                            [(ngModel)]="username" placeholder="Type here..." required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="password" class="field-required">Password</label>
+                                        <div class="input-group">
+                                            <button class="btn btn-generate" (click)="generateCode()">Generate
+                                                Password</button>
+                                            <input type="text" class="form-control" name="pwdName" id="pwdId"
+                                                [(ngModel)]="password" disabled required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="phonenumber" class="field-required">Phonenumber</label>
+                                        <input type="number" class="form-control" name="number" id="numberId"
+                                            [(ngModel)]="mobile" placeholder="Type here..." required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="profile" class="field-required">Profile</label>
+                                        <input type="file" class="form-control" name="profileName" id="profileId"
+                                            [(ngModel)]="profile" (change)="onSelectFile($event)" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-footer submit-card-footer">
+                        <button class="btn btn-action float-right" type="submit" [disabled]="usersForm.invalid"
+                            (click)="saveUserForm()">Save</button>
+                        <button class="btn btn-cancel float-right ml-2" (click)="resetForm();">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <app-footer-nav></app-footer-nav> -->
+
+</div>
+<!-- End page content -->

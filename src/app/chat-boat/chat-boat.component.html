@@ -1,0 +1,26 @@
+<div class="chatbox">
+    <div class="chat" (click)="showChat()">
+        <i class="fa fa-comments-o comment-icon" aria-hidden="false"></i>
+        <i class="fa fa-times close-icon" aria-hidden="false"></i>
+    </div>
+    <div class="card chat-card">
+        <div class="card-header">
+            <i class="fa fa-comments-o" aria-hidden="false"></i> <span class="ml-2">VAAS</span>
+            <span class="ml-2 online"> <i class="fa fa-circle" aria-hidden="false"></i> online</span>
+        </div>
+        <div class="card-body">
+            <ul class="list-group" *ngFor="let item of chatMsgs; let i=index">
+                <li class="list-group-item mr-5 chat-item" [ngClass]="{'class': true}">
+                    <img src="../../assets/images/admin-avatar.png" alt="_vaas" class="img-responsive" width="30" height="30">
+                    <span class="ml-2">
+                        <div class="chat-data">{{ item.msg }}</div>
+                    </span>
+                </li>
+            </ul>
+        </div>
+        <div class="card-footer">
+            <input type="text"class="form-control" name="message" id="msg" [(ngModel)]="message" (keyup.enter)="sendMessage()" placeholder="Enter message">
+            <i class="fa fa-send" aria-hidden="false" (click)="sendMessage()"></i>
+        </div>
+    </div>
+</div>
